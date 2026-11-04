@@ -1,25 +1,40 @@
-# EL-DANZA OneHealth AI 🌍
+# 🌍 EL-DANZA OneHealth AI
+### AI-Powered Zoonotic Outbreak Prediction | Microsoft Imagine Cup 2026
 
-**Saving Rural Africa with AI — One Health, One Future.**
+**Founder:** Suleiman Ibrahim Danza | Danzanfulani, Giwa LGA, Kaduna, Nigeria | UoPeople Health Science
 
-### The Problem
-In rural Africa, human, animal & environmental health are connected but separated. A child gets sick from livestock, crops fail from climate, and no doctor connects the dots.
+**Live App:** https://el-danza-onehealth-ai.streamlit.app
 
-### Our Solution — OneHealth AI
-An AI platform built for low-connectivity villages:
-- **Human Health:** Early diagnosis of malaria, cholera, Lassa from symptoms + environment
-- **Animal Health:** Predict livestock disease outbreaks
-- **Environmental Health:** Alert on water contamination & climate risks
-- **Offline-First:** Works with SMS & low data, voice in Hausa/Fulfulde
+#### Problem
+Rural Africa has no early warning for zoonotic diseases. Human, animal, and environmental health are disconnected.
 
-### Built With
-- Azure AI, Python, Streamlit
-- Designed for Microsoft Imagine Cup 2026
+#### Solution: One Health AI
+EL-DANZA AI integrates:
+- 👤 Human Health: Fever cases (last 7 days)
+- 🐄 Animal Health: Sudden livestock deaths, species affected
+- 🌧️ Environmental: Rainfall anomaly %, Temperature °C
+- 📍 Location: LGA/Village
 
-### Founder
-Suleiman Ibrahim Danza — Built to save lives in rural Nigeria.
+Outputs:
+- OneHealth Risk Score (0-100)
+- Risk Level: LOW / MEDIUM / HIGH
+- Recommended Actions: Notify Vet & PHC, Inspect water, Isolate livestock
+- Disclaimer: Surveillance tool, not medical diagnosis
 
-### Live Demo
-Coming soon on Azure!
+#### Features
+- ✅ Multilingual: English / Harshe / Ɗemngal
+- ✅ Built for low-bandwidth rural use
+- ✅ Tested in Danzanfulani, Giwa LGA
+- ✅ Accuracy from rural for rural Africa
 
-#OneHealth #ImagineCup #Nigeria
+#### Tech Stack
+Python, Streamlit, Scikit-learn, Pandas, Pillow
+
+#### How to Run Locally
+pip install -r requirements.txt
+streamlit run app.py
+
+#### Imagine Cup 2026
+Built with accuracy from rural Danzanfulani for rural Africa. #OneHealth #UoPeople
+
+Disclaimer: This is a surveillance prediction tool, not a medical diagnosis. Always consult LGA Health Officer.
