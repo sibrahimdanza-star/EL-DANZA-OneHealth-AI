@@ -9,7 +9,7 @@ st.markdown("### 🟢 Offline-Ready • Works Without Internet • Data Saved Lo
 st.markdown("# EL-DANZA OneHealth AI")
 st.markdown("### **One Compound. One Room. One Water Pot. One Health.**")
 st.markdown("*From Danzanfulani, Giwa LGA, Kaduna, Nigeria — to Nigeria — to Africa — to Inter-Africa*")
-st.error("DEMO VERSION - Rule-Based for Education. Always see Doctor / Vet / Health Worker.")
+st.error("DEMO VERSION - Rule-Based for Education. Always see Doctor / Vet / Health Worker. Photo is optional and not stored.")
 
 # --- TOP CONTROLS - STAY AT TOP ---
 c_top1, c_top2 = st.columns(2)
@@ -25,13 +25,12 @@ with c_top2:
         "6. Inter-Africa"
     ])
 
-# Language helper
 if lang == "Hausa":
-    st.info("**Suleiman Ibrahim Danza | Danzanfulani, Giwa.** Gida daya, Daki daya, Tukunyar Ruwa daya, Lafiya daya. Idan yaro, akuya, da gona suka yi rashin lafiya a mako daya, tushe daya ne.")
+    st.info("**SULEIMAN IBRAHIM | Danzanfulani, Giwa.** Gida daya, Daki daya, Tukunyar Ruwa daya, Lafiya daya. Idan yaro, akuya, da gona suka yi rashin lafiya a mako daya, tushe daya ne.")
 elif lang == "French":
-    st.info("**Suleiman Ibrahim Danza | Danzanfulani, Giwa.** Un même enclos, une même chambre, un même pot d'eau, une même santé.")
+    st.info("**SULEIMAN IBRAHIM | Danzanfulani, Giwa.** Un même enclos, une même chambre, un même pot d'eau, une même santé.")
 else:
-    st.info("**Founder: SULEIMAN IBRAHIM DANZA | Danzanfulani, Giwa LGA** | In our compound, a hen, a goat and a child sleep in the same room. They share the same water pot. They defecate in the same compound. If they all get sick in the same week, it is ONE problem, not three. This app finds the ROOT.")
+    st.info("**Founder: SULEIMAN IBRAHIM | Danzanfulani, Giwa LGA** | In our compound, a hen, a goat and a child sleep in the same room. They share the same water pot. They defecate in the same compound. If they all get sick in the same week, it is ONE problem, not three. This app finds the ROOT.")
 
 if "1." in level:
     st.success("📍 Level 1: Village Pilot - Danzanfulani. This is where we prove it works.")
@@ -44,27 +43,41 @@ else:
 st.divider()
 st.header("🧑 HUMAN HEALTH / LAFIYAR MUTANE / SANTÉ HUMAINE")
 human_symptom = st.selectbox("Select Symptom", ["Skin sore / Impetigo-like", "Fever + Rash", "Diarrhea / Watery stool", "Cough / Breathing difficulty"])
-human_img = st.file_uploader("Upload Human Skin Photo", type=["jpg","png"], key="human")
+st.markdown("**📸 Photo (Optional) - Not Stored, For Demo Only**")
+human_img = st.file_uploader("Upload Human Skin Photo - Optional", type=["jpg","png"], key="human")
+if human_img:
+    st.image(human_img, caption="✅ Photo Uploaded - Preview", width=300)
+    st.caption("Photo preview only. Not saved to server. Privacy-first.")
 if st.button("Analyze Human"):
     st.success(f"Human Result: {human_symptom} - See PHC / Doctor. Wash hands, use clean covered water.")
-    if human_img: st.image(human_img, caption="Uploaded Human Photo")
+    if human_img:
+        st.image(human_img, caption="Analyzed Human Photo", width=300)
 
 # --- ANIMAL ---
 st.divider()
 with st.expander("🐐 ANIMAL HEALTH - Click to Open / LAFIYAR DABBOBI", expanded=False):
     animal = st.selectbox("Select Animal", ["Chicken","Goat","Sheep","Cow","Turkey","Duck","Goose","Hen","Dog"])
     animal_symptom = st.selectbox("Select Symptom", ["Skin lumps / Lumpy Skin-like (Cattle)", "Sneezing / Coughing (Poultry)", "Diarrhea / Bloody stool", "Not eating / Weak"])
-    animal_img = st.file_uploader("Upload Animal Photo", type=["jpg","png"], key="animal")
+    st.markdown("**📸 Photo (Optional) - Not Stored, For Demo Only**")
+    animal_img = st.file_uploader("Upload Animal Photo - Optional", type=["jpg","png"], key="animal")
+    if animal_img:
+        st.image(animal_img, caption="✅ Animal Photo Uploaded - Preview", width=300)
+        st.caption("Photo preview only. Not saved to server. Privacy-first.")
     if st.button("Analyze Animal"):
         st.success(f"Animal Result: {animal} - {animal_symptom} - Isolate animal, call Vet / Giwa LGA Vet Officer. Do NOT let it drink from human water pot.")
-        if animal_img: st.image(animal_img, caption="Uploaded Animal Photo")
+        if animal_img:
+            st.image(animal_img, caption="Analyzed Animal Photo", width=300)
 
 # --- CROP ---
 st.divider()
 with st.expander("🌱 CROP HEALTH - Click to Open - From Giwa Farm Nov 5", expanded=False):
     crop = st.selectbox("Select Crop", ["Wake / Cowpea / Bean", "Dawa / Guinea Corn / Sorghum", "Tomato", "Guava", "Masara / Maize", "Cucumber"])
     crop_symptom = st.selectbox("What do you see? - From Giwa Farm", ["Black small insects / Aphids", "Small round holes / Tuta", "Black dry mummy fruit / Rot", "Yellow leaves / Wilting", "Black mold on stored grain / Aflatoxin"])
-    crop_img = st.file_uploader("Upload Crop Photo", type=["jpg","png"], key="crop")
+    st.markdown("**📸 Photo (Optional) - Not Stored, For Demo Only**")
+    crop_img = st.file_uploader("Upload Crop Photo - Optional", type=["jpg","png"], key="crop")
+    if crop_img:
+        st.image(crop_img, caption="✅ Crop Photo Uploaded - Preview", width=300)
+        st.caption("Photo preview only. Not saved to server. Privacy-first.")
     if st.button("Analyze Crop"):
         if "Aphids" in crop_symptom:
             st.error("Crop Result: Black Aphids on Wake - Severe. Spray neem / soapy water, remove infested leaves.")
@@ -76,9 +89,10 @@ with st.expander("🌱 CROP HEALTH - Click to Open - From Giwa Farm Nov 5", expa
             st.error("Crop Result: AFLATOXIN RISK - Moldy Dawa/Masara - DO NOT EAT, DO NOT FEED TO CHICKEN/GOAT. Poison! Bury it. Dry storage next time.")
         else:
             st.success(f"Crop Result: {crop} - {crop_symptom} - Monitor, improve watering, wash before eating raw.")
-        if crop_img: st.image(crop_img, caption="Uploaded Crop Photo")
+        if crop_img:
+            st.image(crop_img, caption="Analyzed Crop Photo", width=300)
 
-# --- NEW WOW: SAME COMPOUND CHECK ---
+# --- SAME COMPOUND CHECK ---
 st.divider()
 st.header("🏠 SAME COMPOUND CHECK - The Innovation Judges Will Remember")
 st.markdown("**Gida Daya / Même Enclos / Same Compound** — 30 seconds. Answer honestly. This is what makes EL-DANZA different.")
@@ -128,25 +142,19 @@ if st.button("Save Report & Calculate Risk"):
     risk = "LOW" if score < 30 else "MEDIUM" if score < 60 else "HIGH"
     st.success(f"Risk Score: {score} - {risk} - Saved for {level} on {date.today()}")
     st.info(f"Root You Selected: {root} - If Human + Animal + Crop are sick, check this root FIRST.")
-
-    # TRIPLE SIGNAL - WOW
     if h > 0 and a > 0 and cr > 0:
         st.error("🚨 TRIPLE SIGNAL ALERT - One Compound, One Week! Human + Animal + Crop sick together. This is NOT 3 problems. Check SHARED WATER + DUNG + RAW CROP. Alert PHC + Vet + Extension Officer TOGETHER.")
-        # Compound link
         if compound_yes >= 3:
             st.error("🔴🔴 DOUBLE RED: Triple Signal + HIGH Compound Risk = BREAK THE CYCLE NOW. Your compound is the root.")
     elif (h > 0 and a > 0) or (a > 0 and cr > 0) or (h > 0 and cr > 0):
         st.warning("⚠️ DOUBLE SIGNAL: Two domains sick together. Check shared water / environment.")
-
     if "1." in level:
         st.info("Danzanfulani View: Alert village head, PHC, and Giwa LGA. Isolate sick livestock. Cover water pot.")
     elif "5." in level or "6." in level:
         st.info("Africa View: If many villages report same pattern, this is a regional outbreak alert.")
     else:
         st.info(f"{level} View: Alert LGA / State health team and share this log.")
-
     st.session_state.history.append({"Date": str(date.today()), "Risk Score": score, "Human": h, "Animal": a, "Crop": cr, "Compound YES": compound_yes})
-
     if st.button("📱 Send SMS Alert to Local PHC (Demo)"):
         st.success(f"SMS Demo Sent to Giwa PHC: Risk {score} - {risk} - Root: {root} - Danzanfulani")
     if len(st.session_state.history) > 0:
@@ -164,4 +172,4 @@ st.divider()
 st.markdown("### The Cycle We Break")
 st.markdown("**Sick Goat/Hen in same room → Defecates + Drinks Water → Dirty Water Pot + Dirty Floor + Flies → Child drinks water + eats raw Tomato/Guava → Child + Goat + Crop sick → Dung goes back to farm → CYCLE REPEATS**")
 st.markdown("**EL-DANZA breaks the cycle at the ROOT: Cover water, separate animals, sweep dung, wash raw crops, dry dung before farm.**")
-st.caption("© 2026 EL-DANZA OneHealth AI - From Danzanfulani, Giwa LGA, Kaduna, Nigeria to Entire Africa & Inter-Africa | Built by Suleiman Ibrahim Danza | Imagine Cup 2026")
+st.caption("© 2026 EL-DANZA OneHealth AI - v5.1 Professional | From Danzanfulani, Giwa LGA, Kaduna, Nigeria to Entire Africa & Inter-Africa | Built by SULEIMAN IBRAHIM | Imagine Cup 2026 | Photo Optional - Privacy-First - Not Stored")
