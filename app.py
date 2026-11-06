@@ -107,3 +107,38 @@ else:
     lga = st.text_input("LGA / District", "")
     ward = st.text_input("Ward", "")
     village = st.text_input("Village / Area (type exact)", "")
+
+
+st.markdown("---")
+st.subheader("Who is sick?")
+who = st.selectbox("Who is sick?", ["Human", "Animal", "Both Human and Animal"])
+age = st.text_input("Age (e.g. 5 years, Adult)", "")
+sex = st.selectbox("Sex", ["Female", "Male", "Not sure"])
+
+st.subheader("Symptoms / Signs")
+symptoms = st.multiselect("Select all symptoms", ["Fever", "Cough", "Diarrhoea", "Vomiting", "Rash", "Headache", "Difficulty breathing", "Loss of appetite", "Weakness", "Other"])
+duration = st.selectbox("How long?", ["Today", "1-3 days", "4-7 days", "More than 1 week"])
+
+st.subheader("Photo (Optional)")
+photo = st.file_uploader("Upload photo (optional)", type=["jpg", "jpeg", "png"])
+if photo is not None:
+    st.image(photo, caption="Photo uploaded - not stored")
+
+st.markdown("---")
+if st.button("Get Guidance", type="primary"):
+    st.subheader("Guidance Result")
+    st.write(f"Location: {village}, {ward}, {lga}, {state}, {country}")
+    st.write(f"Who: {who} | Age: {age} | Sex: {sex}")
+    st.write(f"Symptoms: {', '.join(symptoms)}")
+    st.write(f"Duration: {duration}")
+    if "Difficulty breathing" in symptoms:
+        st.error("URGENT: Go to nearest Health Facility / Vet TODAY. Do not wait.")
+    else:
+        st.success("Monitor at home + See Health Worker within 24-48 hours")
+        st.write("1. Rest, clean water, light food")
+        st.write("2. Wash hands with soap")
+        st.write("3. If worse, go to facility immediately.")
+    st.info("OneHealth: Human + Animal + Water are connected.")
+    st.caption("DEMO - For Education Only. Always see Doctor / Vet.")
+
+st.caption("EL-DANZA OneHealth AI - From Danzanfulani, Giwa LGA, Kaduna to Nigeria to Africa")
