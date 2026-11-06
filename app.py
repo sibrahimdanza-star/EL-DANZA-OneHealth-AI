@@ -97,6 +97,13 @@ NIGERIA_DATA = {
 }
 
 if country == "Nigeria":
-    state = st.selectbox("State", list(NIGERIA_DATA.keys()), index=list(NIGERIA_DATA.keys()).index("Kaduna"))
-       lga_list = NIGERIA_DATA[state]
-    lga = st.selectbox("LGA", lga_list) 
+    state = st.selectbox("State", list(NIGERIA_DATA.keys()))
+    lga_list = NIGERIA_DATA[state]
+    lga = st.selectbox("LGA", lga_list)
+    ward = st.text_input("Ward", "")
+    village = st.text_input("Village / Area (type exact)", "")
+else:
+    state = st.text_input("State / Region", "")
+    lga = st.text_input("LGA / District", "")
+    ward = st.text_input("Ward", "")
+    village = st.text_input("Village / Area (type exact)", "")
