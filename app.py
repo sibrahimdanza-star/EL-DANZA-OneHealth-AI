@@ -10,7 +10,7 @@ model = None
 try:
     api_key = st.secrets["GEMINI_API_KEY"]
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel("gemini-2.0-flash")
+    model = genai.GenerativeModel("gemini-3.8-flash")
     ai_ready = True
 except Exception:
     ai_ready = False
@@ -29,15 +29,39 @@ else:
 st.error("DEMO VERSION - Rule-Based for Education. Always see Doctor / Vet / Health Worker. Photo is optional and not stored.")
 
 # --- LANGUAGE + LOCATION ---
-lang = st.selectbox("🌍 Language / Harshe / Langue", ["English", "Hausa", "French"])
-location = st.selectbox("📍 Where Are You Reporting From?", [
-    "1. Danzanfulani (Village) - Where it started",
-    "2. Giwa LGA",
-    "3. Kaduna",
-    "4. Other Nigeria",
-    "5. Other Africa"
-])
 
+
+# --- SMART LOCATION: Continent > Country > State > LGA > Ward > Village ---
+st.subheader("📍 Where Are You Reporting From?")
+continent = st.selectbox("1. Continent", ["Africa", "Asia", "Europe", "Americas", "Oceania"])
+if continent == "Africa":
+    country = st.selectbox("2. Country", ["Nigeria", "Ghana", "Niger", "Cameroon", "Chad", "Kenya", "Ethiopia", "South Africa", "Other Africa"])
+else:
+    country = st.selectbox("2. Country", ["Other - Outside Africa"])
+
+if country == "Nigeria":
+    state = st.selectbox("3. State", ["Kaduna", "Kano", "Lagos", "Abuja FCT", "Katsina", "Sokoto", "Zamfara", "Plateau", "Borno", "Other State"])
+else:
+    state = st.selectbox("3. State / Region", ["Other Region"])
+
+if state == "Kaduna":
+    lga = st.selectbox("4. LGA", ["Giwa", "Kaduna North", "Kaduna South", "Zaria", "Sabon Gari", "Kubau", "Ikara", "Other LGA"])
+elif country == "Nigeria":
+    lga = st.selectbox("4. LGA", ["Other LGA"])
+else:
+    lga = st.selectbox("4. LGA / District", ["Other District"])
+
+if lga == "Giwa":
+    ward = st.selectbox("5. Ward", ["Wazata", "Giwa", "Kakangi", "Kwashingiri", "Shika", "Other Ward"])
+else:
+    ward = st.selectbox("5. Ward", ["Other Ward"])
+
+village = st.text_input("6. Type Your Exact Village / Area", placeholder="e.g. Danzanfulani, Unguwan Fulani...")
+if village:
+    location = f"{village}, {ward}, {lga}, {state}, {country}, {continent}"
+else:
+    location = f"{ward}, {lga}, {state}, {country}, {continent}"
+st.success(f"📍 Your Location: {location}")
 st.info("**Founder: SULEIMAN IBRAHIM | Danzanfulani, Giwa LGA |** In our compound, a hen, a goat and a child sleep in the same room. They share the same water pot. They defecate in the same compound. If they all get sick in the same week, it is ONE problem, not three. This app finds the ROOT.")
 st.success("📍 Level 1: Village Pilot - Danzanfulani. This is where we prove it works.")
 
