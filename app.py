@@ -131,12 +131,9 @@ if st.button("Get Guidance", type="primary"):
     st.write(f"Who: {who} | Age: {age} | Sex: {sex}")
     st.write(f"Symptoms: {', '.join(symptoms)}")
     st.write(f"Duration: {duration}")
-            age_num = int(age.split()[0]) if age.split() and age.split()[0].isdigit() else 99
-    is_under5 = age_num < 5
-    has_triple = "Fever" in symptoms and "Diarrhoea" in symptoms and "Vomiting" in symptoms
-    has_danger = "Difficulty breathing" in symptoms
 
-    if has_danger or (is_under5 and has_triple):
+        is_under5 = age.split()[0] in ["0", "1", "2", "3", "4", "0-1", "1-4"]
+        if "Difficulty breathing" in symptoms or (is_under5 and "Fever" in symptoms and "Diarrhoea" in symptoms and "Vomiting" in symptoms):
         st.error("URGENT: Go to nearest Health Facility TODAY. Do not wait. Child under 5 with Fever + Diarrhoea + Vomiting needs urgent care.")
         st.write("1. Give small sips of clean water / ORS if available")
         st.write("2. Do NOT wait 48 hours")
@@ -146,7 +143,7 @@ if st.button("Get Guidance", type="primary"):
         st.write("1. Rest, clean water, light food")
         st.write("2. Wash hands with soap")
         st.write("3. If worse, go to facility immediately.")
-    st.info("OneHealth: Human + Animal + Water are connected.")
-    st.caption("DEMO - For Education Only. Always see Doctor / Vet.")
+        st.info("OneHealth: Human + Animal + Water are connected.")
+        st.caption("DEMO - For Education Only. Always see Doctor / Vet.")
 
 st.caption("EL-DANZA OneHealth AI - From Danzanfulani, Giwa LGA, Kaduna to Nigeria to Africa")
