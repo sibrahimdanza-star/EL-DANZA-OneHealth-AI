@@ -132,8 +132,15 @@ if st.button("Get Guidance", type="primary"):
     st.write(f"Symptoms: {', '.join(symptoms)}")
     st.write(f"Duration: {duration}")
 
-        is_under5 = age.split()[0] in ["0", "1", "2", "3", "4", "0-1", "1-4"]
-        if "Difficulty breathing" in symptoms or (is_under5 and "Fever" in symptoms and "Diarrhoea" in symptoms and "Vomiting" in symptoms):
+        age_text = str(age)
+        is_under5 = age_text in ["0", "1", "2", "3", "4"]
+        if age_text == "0-1":
+        is_under5 = True
+        if age_text == "1-4":
+        is_under5 = True
+        has_breath = "Difficulty breathing" in symptoms
+        has_combo = is_under5 and "Fever" in symptoms and "Diarrhoea" in symptoms and "Vomiting" in symptoms
+        if has_breath or has_combo:
         st.error("URGENT: Go to nearest Health Facility TODAY. Do not wait. Child under 5 with Fever + Diarrhoea + Vomiting needs urgent care.")
         st.write("1. Give small sips of clean water / ORS if available")
         st.write("2. Do NOT wait 48 hours")
