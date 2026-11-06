@@ -148,9 +148,8 @@ with st.expander("🌱 CROP HEALTH - Click to Open - From Giwa Farm", expanded=F
 
 st.markdown("---")
 
-# --- 5. SAME COMPOUND CHECK ---
-st.header("🏠 SAME COMPOUND CHECK -)
-st.write("**Gida Daya / Même Enclos / Same Compound — 30 seconds. Answer honestly.
+st.header("🏠 SAME COMPOUND CHECK")
+st.write("**Gida Daya / Même Enclos / Same Compound — 30 seconds. Answer honestly.**")
 st.write("In Danzanfulani, hen, goat and child sleep in same room, share same water pot, defecate in same compound. If YES to 3+, your compound is the root.")
 
 q1 = st.radio("1. Do animals sleep in same room as humans? / Dabbobi suna kwana daki daya da mutane?", ["No", "Yes"])
