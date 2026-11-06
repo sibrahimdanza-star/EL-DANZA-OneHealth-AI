@@ -10,7 +10,7 @@ model = None
 try:
     api_key = st.secrets["GEMINI_API_KEY"]
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel("gemini-1.5-flash")
+    model = genai.GenerativeModel("gemini-2.0-flash")
     ai_ready = True
 except Exception:
     ai_ready = False
@@ -34,12 +34,11 @@ location = st.selectbox("📍 Where Are You Reporting From?", [
     "1. Danzanfulani (Village) - Where it started",
     "2. Giwa LGA",
     "3. Kaduna",
-    "4. Port Harcourt",
-    "5. Other Nigeria",
-    "6. Other Africa"
+    "4. Other Nigeria",
+    "5. Other Africa"
 ])
 
-st.info("**Founder: SULEIMAN IBRAHIM DANZA | Danzanfulani, Giwa LGA |** In our compound, a hen, a goat and a child sleep in the same room. They share the same water pot. They defecate in the same compound. If they all get sick in the same week, it is ONE problem, not three. This app finds the ROOT.")
+st.info("**Founder: SULEIMAN IBRAHIM | Danzanfulani, Giwa LGA |** In our compound, a hen, a goat and a child sleep in the same room. They share the same water pot. They defecate in the same compound. If they all get sick in the same week, it is ONE problem, not three. This app finds the ROOT.")
 st.success("📍 Level 1: Village Pilot - Danzanfulani. This is where we prove it works.")
 
 # --- HELPER: GEMINI OR OFFLINE ---
@@ -105,7 +104,7 @@ human_img_file = st.file_uploader("Upload Human Skin Photo", type=["jpg","jpeg",
 human_img = None
 if human_img_file:
     human_img = Image.open(human_img_file)
-    st.image(human_img, caption="Human Photo", width=300)
+    st.image(human_img, caption="Human Photo", width=400)
     st.caption("Photo uploaded - Smart Check ready")
 if st.button("Analyze Human"):
     ask_ai(
@@ -124,7 +123,7 @@ with st.expander("🐐 ANIMAL HEALTH - Click to Open / LAFIYAR DABBOBI", expande
     animal_img = None
     if animal_img_file:
         animal_img = Image.open(animal_img_file)
-        st.image(animal_img, caption="Animal Photo", width=300)
+        st.image(animal_img, caption="Animal Photo", width=400)
     if st.button("Analyze Animal"):
         ask_ai(
             f"You are a vet assistant in Nigeria. Animal: {animal}, Symptom: {animal_symptom}. Look at photo. Give simple farm advice in English + Pidgin. Always say see Vet. Give isolation, clean water, hygiene steps.",
@@ -139,10 +138,10 @@ with st.expander("🌱 CROP HEALTH - Click to Open - From Giwa Farm", expanded=F
     crop_img = None
     if crop_img_file:
         crop_img = Image.open(crop_img_file)
-        st.image(crop_img, caption="Crop Photo", width=300)
+        st.image(crop_img, caption="Crop Photo", width=400)
     if st.button("Diagnose Crop With Real AI"):
         ask_ai(
-            f"You are an expert Nigerian agronomist for EL-DANZA. Crop: {crop}. Look at photo. Give in simple English + Pidgin: 1. What crop/disease/pest? 2. Serious? Low/Medium/High 3. What to do NOW - cheap medicine in Port Harcourt / Kaduna market 4. Prevention. Keep short for farmer.",
+            f"You are an expert Nigerian agronomist for EL-DANZA. Crop: {crop}. Look at photo. Give in simple English + Pidgin: 1. What crop/disease/pest? 2. Serious? Low/Medium/High 3. What to do NOW - cheap medicine in Giwa / Kaduna market 4. Prevention. Keep short for farmer.",
             crop_img,
             f"Crop: {crop} - Check leaf colour, spots, insects. Remove affected leaves, do not use fresh dung, use clean water. See Extension Officer for confirmation."
         )
@@ -150,8 +149,8 @@ with st.expander("🌱 CROP HEALTH - Click to Open - From Giwa Farm", expanded=F
 st.markdown("---")
 
 # --- 5. SAME COMPOUND CHECK ---
-st.header("🏠 SAME COMPOUND CHECK - The Innovation Judges Will Remember")
-st.write("**Gida Daya / Même Enclos / Same Compound — 30 seconds. Answer honestly. This is what makes EL-DANZA different.**")
+st.header("🏠 SAME COMPOUND CHECK -)
+st.write("**Gida Daya / Même Enclos / Same Compound — 30 seconds. Answer honestly.
 st.write("In Danzanfulani, hen, goat and child sleep in same room, share same water pot, defecate in same compound. If YES to 3+, your compound is the root.")
 
 q1 = st.radio("1. Do animals sleep in same room as humans? / Dabbobi suna kwana daki daya da mutane?", ["No", "Yes"])
@@ -171,4 +170,4 @@ if st.button("Calculate Compound Risk"):
         st.success(f"🟢 LOW COMPOUND RISK - Score {score}/100 - {yes_count} YES. Keep it up! Keep water covered.")
 
 st.markdown("---")
-st.caption("© 2026 EL-DANZA OneHealth AI - From Danzanfulani, Giwa LGA, Kaduna, Nigeria to Entire Africa & Inter-Africa | Built by Suleiman Ibrahim Danza | Imagine Cup 2026")
+st.caption("© 2026 EL-DANZA OneHealth AI - From Danzanfulani, Giwa LGA, Kaduna, Nigeria to Entire Africa & Inter-Africa | Built by Suleiman Ibrahim | Imagine Cup 2026")
