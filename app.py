@@ -100,7 +100,7 @@ if country == "Nigeria":
     state = st.selectbox("State", list(NIGERIA_DATA.keys()))
     lga_list = NIGERIA_DATA[state]
     lga = st.selectbox("LGA", lga_list)
-    ward = st.text_input("Ward", "")
+    ward = st.selectbox("Ward", ward_list)
     village = st.text_input("Village / Area (type exact)", "")
 else:
     state = st.text_input("State / Region", "")
@@ -131,8 +131,18 @@ if st.button("Get Guidance", type="primary"):
     st.write(f"Who: {who} | Age: {age} | Sex: {sex}")
     st.write(f"Symptoms: {', '.join(symptoms)}")
     st.write(f"Duration: {duration}")
-    if "Difficulty breathing" in symptoms:
-        st.error("URGENT: Go to nearest Health Facility / Vet TODAY. Do not wait.")
+        import re
+    nums = re.findall(r"\d+", age)
+    age_num = int(nums[0]) if nums else 99
+    is_under5 = age_num < 5
+    has_triple = "Fever" in symptoms and "Diarrhoea" in symptoms and "Vomiting" in symptoms
+    has_danger = "Difficulty breathing" in symptoms
+
+    if has_danger or (is_under5 and has_triple):
+        st.error("URGENT: Go to nearest Health Facility TODAY. Do not wait. Child under 5 with Fever + Diarrhoea + Vomiting needs urgent care.")
+        st.write("1. Give small sips of clean water / ORS if available")
+        st.write("2. Do NOT wait 48 hours")
+        st.write("3. Go to Health Facility / Hospital now.")
     else:
         st.success("Monitor at home + See Health Worker within 24-48 hours")
         st.write("1. Rest, clean water, light food")
