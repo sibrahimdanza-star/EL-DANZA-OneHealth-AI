@@ -98,4 +98,5 @@ NIGERIA_DATA = {
 
 if country == "Nigeria":
     state = st.selectbox("State", list(NIGERIA_DATA.keys()), index=list(NIGERIA_DATA.keys()).index("Kaduna"))
-    lga = st.selectbox("LGA", NIGERIA_DATA[state], index=NIGERIA_DATA[state].index("Giwa") if state
+       lga_list = NIGERIA_DATA[state]
+    lga = st.selectbox("LGA", lga_list) 
