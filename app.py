@@ -169,4 +169,33 @@ if st.button("Calculate Compound Risk"):
         st.success(f"🟢 LOW COMPOUND RISK - Score {score}/100 - {yes_count} YES. Keep it up! Keep water covered.")
 
 st.markdown("---")
+st.markdown("---")
+
+# --- 6. VOICE ASK - FOR NON-FORMAL USERS ---
+st.header("🎤 VOICE ASK - Talk, Don't Type / Magana, Ba Rubutu Ba")
+st.write("Can't read or type? Press mic, speak in Hausa / Pidgin / English / French. Tell us: Human, Animal or Crop sick? We will listen and answer you.")
+st.info("People First: This is for grandmother in Danzanfulani, farmer in Giwa with dirty hands, herdsman on road, child who can speak but cannot spell.")
+
+voice_file = st.audio_input("Press Mic & Speak - Danna Mic ka yi Magana")
+
+if voice_file is not None:
+    st.audio(voice_file)
+    if st.button("Send Voice to Real AI"):
+        if ai_ready and model is not None:
+            try:
+                with st.spinner("Real Gemini AI is listening..."):
+                    audio_bytes = voice_file.read()
+                    res = model.generate_content([
+                        "You are EL-DANZA OneHealth educator in Nigeria. Listen to this voice note. User is rural farmer / mother, maybe speaking Hausa, Pidgin, English or French. First, write what they said. Then give simple safe advice in SAME language they used. Keep very short, very simple. 3 steps only. Always say see Doctor / Vet / Extension Officer. Do NOT give definite diagnosis.",
+                        {"mime_type": "audio/wav", "data": audio_bytes}
+                    ])
+                    st.markdown("### ✅ REAL GEMINI AI HEARD YOU")
+                    st.write(res.text)
+            except Exception as e:
+                st.warning(f"Online Voice failed ({e}) - Using Offline Mode")
+                st.markdown("### 📴 OFFLINE MODE RESULT")
+                st.write("Voice received. We heard you. Tell us: Is it Human, Animal or Crop sick? Is there fever, diarrhoea, or not eating? Go to PHC / Vet today if serious.")
+        else:
+            st.markdown("### 📴 OFFLINE MODE RESULT")
+            st.write("Voice received. We heard you. Tell us: Is it Human, Animal or Crop sick? Is there fever, diarrhoea, or not eating? Go to PHC / Vet today if serious.")
 st.caption("© 2026 EL-DANZA OneHealth AI - From Danzanfulani, Giwa LGA, Kaduna, Nigeria to Entire Africa & Inter-Africa | Built by Suleiman Ibrahim | Imagine Cup 2026") 
