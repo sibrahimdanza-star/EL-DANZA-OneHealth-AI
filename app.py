@@ -127,6 +127,14 @@ def ask_ai(prompt_text, image_obj, offline_fallback):
     st.write(offline_fallback)
 
 st.markdown("---")
+# --- FIND NEAREST PHC BUTTON ---
+st.subheader("🏥 Find Help Near You")
+place = location.replace(" ", "+")
+st.link_button("🏥 Find Nearest PHC / Hospital", f"https://www.google.com/maps/search/Primary+Health+Care+Hospital+near+{place}")
+st.link_button("🐐 Find Nearest Vet", f"https://www.google.com/maps/search/Veterinary+Clinic+near+{place}")
+st.link_button("🌱 Find Nearest Agro Dealer", f"https://www.google.com/maps/search/Agro+dealer+near+{place}")
+st.caption("This opens Google Maps. It will show PHC, Hospital, Vet near your village.")
+st.markdown("---")
 
 # --- 1. COMMUNITY LOG ---
 st.header("🏠 Community OneHealth Log - " + location)
