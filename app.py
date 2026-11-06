@@ -131,9 +131,7 @@ if st.button("Get Guidance", type="primary"):
     st.write(f"Who: {who} | Age: {age} | Sex: {sex}")
     st.write(f"Symptoms: {', '.join(symptoms)}")
     st.write(f"Duration: {duration}")
-        import re
-    nums = re.findall(r"\d+", age)
-    age_num = int(nums[0]) if nums else 99
+            age_num = int(age.split()[0]) if age.split() and age.split()[0].isdigit() else 99
     is_under5 = age_num < 5
     has_triple = "Fever" in symptoms and "Diarrhoea" in symptoms and "Vomiting" in symptoms
     has_danger = "Difficulty breathing" in symptoms
