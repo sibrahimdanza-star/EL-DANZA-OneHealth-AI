@@ -4,14 +4,21 @@ import google.generativeai as genai
 
 st.set_page_config(page_title="EL-DANZA OneHealth AI", layout="centered")
 
-# --- GEMINI SETUP - OFFLINE + ONLINE ---
+# --- GEMINI SETUP - TRY 4 MODELS ---
 ai_ready = False
 model = None
 try:
     api_key = st.secrets["GEMINI_API_KEY"]
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel("gemini-3.8-flash")
-    ai_ready = True
+    for _name in ["gemini-3.8-flash", "gemini-3.6-flash", "gemini-3.5-flash-lite", "gemini-3.1-flash-lite"]:
+        try:
+            _m = genai.GenerativeModel(_name)
+            _m.generate_content("hi")
+            model = _m
+            ai_ready = True
+            break
+        except Exception:
+            continue
 except Exception:
     ai_ready = False
 
