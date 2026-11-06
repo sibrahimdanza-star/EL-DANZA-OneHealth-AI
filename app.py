@@ -95,10 +95,10 @@ if country == "Nigeria":
     state = st.selectbox("State", list(NIGERIA_DATA.keys()), index=list(NIGERIA_DATA.keys()).index("Kaduna"))
     lga = st.selectbox("LGA", NIGERIA_DATA[state], index=NIGERIA_DATA[state].index("Giwa") if state=="Kaduna" else 0)
     if state=="Kaduna" and lga=="Giwa":
-        ward = st.selectbox("Ward", ["Wazata","Giwa","Kakangi","Kudingi","Shika","Idasu","Tsibiri","Gangara","Kauru","Yakawada","Danmahawayi"], index=0)
+        ward = st.selectbox("Ward", ["Wazata","Giwa","Kakangi","Kidandan","Shika","Idasu","Panhauya","Gangara","Galadimawa","Yakawada","Danmahawayi"], index=0)
     else:
         ward = st.text_input("Ward", "")
-    village = st.text_input("Village / Area (type exact)", "Zamfani" if state=="Kaduna" and lga=="Giwa" else "")
+    village = st.text_input("Village / Area (type exact)", "Danzanfulani" if state=="Kaduna" and lga=="Giwa" else "")
 else:
     state = st.text_input("State / Region", "")
     lga = st.text_input("LGA / District", "")
