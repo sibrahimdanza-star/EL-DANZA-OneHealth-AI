@@ -212,11 +212,63 @@ with tab1:
     st.info("Step 3 Test: Tab 1 Compound Log is working. Try Human=2, Animal=2, Crop=1 and press Save.")
 
 with tab2:
-    st.info("Step 4 coming next: Human Health")
+    st.header("Human Health Check")
+    st.write("Check one person at a time. This is guidance only, not a diagnosis.")
+    h_symptom = st.selectbox("Main Symptom / Babban Alamun:", ["Fever / Zazzabi", "Diarrhoea / Gudawa", "Vomiting / Amai", "Cough / Difficulty Breathing / Tari", "Skin Rash / Itching / Kaikayi", "Stomach Pain / Ciwon Ciki"])
+    h_age = st.number_input("Age of Person", 0, 120, 5)
+    h_photo = st.file_uploader("Upload Photo of Symptom (Optional) - Human", type=["jpg", "jpeg", "png"], key="human_photo")
+    if h_photo is not None:
+        st.image(h_photo, caption="Human symptom photo uploaded", width=250)
+    if st.button("Get Human Guidance"):
+        if h_age < 5 and h_symptom in ["Fever / Zazzabi", "Diarrhoea / Gudawa", "Vomiting / Amai", "Cough / Difficulty Breathing / Tari"]:
+            st.error("URGENT: Child Under 5 - Go to PHC immediately. Do not wait. Give clean water, keep child warm, do not give adult medicine.")
+        elif h_symptom == "Fever / Zazzabi":
+            st.warning("Fever Guidance: Rest, drink clean boiled water, use mosquito net. Go to PHC if fever lasts more than 2 days or child is weak.")
+        elif h_symptom == "Diarrhoea / Gudawa":
+            st.warning("Diarrhoea Guidance: Give ORS / clean water often. Wash hands. Go to PHC if blood in stool or child is very weak.")
+        elif h_symptom == "Vomiting / Amai":
+            st.warning("Vomiting Guidance: Give small sips of clean water. Do not force food. Go to PHC if vomiting continues.")
+        elif h_symptom == "Cough / Difficulty Breathing / Tari":
+            st.warning("Cough Guidance: Keep away from smoke. Drink warm water. Go to PHC urgently if breathing is difficult.")
+        elif h_symptom == "Skin Rash / Itching / Kaikayi":
+            st.warning("Skin Guidance: Wash with clean water, keep area dry. Do not scratch. Go to PHC if spreading fast.")
+        else:
+            st.warning("Stomach Pain Guidance: Drink clean water, rest. Go to PHC if pain is severe or with fever.")
+        st.caption("For education only. Always see a certified Doctor / PHC.")
+
 with tab3:
-    st.info("Step 4 coming next: Animal Health")
+    st.header("Animal Health Check")
+    st.write("Check one animal at a time. Separate sick animal from healthy ones.")
+    a_type = st.selectbox("Animal Type / Nau'in Dabba:", ["Goat / Akuya", "Sheep / Tumaki", "Cow / Saniya", "Chicken / Hen / Kaza", "Dog / Kare"])
+    a_symptom = st.selectbox("Animal Symptom / Alamun Dabba:", ["Fever / Zazzabi", "Diarrhoea / Gudawa", "Not Eating / Baya Ci", "Cough / Tari", "Skin Sores / Rauni a Fata"])
+    a_photo = st.file_uploader("Upload Photo of Animal (Optional) - Animal", type=["jpg", "jpeg", "png"], key="animal_photo")
+    if a_photo is not None:
+        st.image(a_photo, caption="Animal photo uploaded", width=250)
+    if st.button("Get Animal Guidance"):
+        st.warning(f"Isolate the {a_type} immediately. Do not mix with healthy animals. Clean pen, give clean water.")
+        if a_symptom == "Fever / Zazzabi":
+            st.warning("Fever in animal: Keep in shade, give clean water. Call Vet urgently, do not give human medicine.")
+        elif a_symptom == "Diarrhoea / Gudawa":
+            st.warning("Diarrhoea in animal: Give clean water, clean pen. Call Vet if blood or animal is weak.")
+        elif a_symptom == "Not Eating / Baya Ci":
+            st.warning("Not eating: Check teeth, water, and pen. Call Vet if more than 1 day.")
+        elif a_symptom == "Cough / Tari":
+            st.warning("Cough in animal: Separate from others, keep dry. Call Vet.")
+        else:
+            st.warning("Skin sores: Wash with clean water, keep flies away. Call Vet, do not use dirty herbs on open wound.")
+        st.caption("For education only. Always see a certified Vet.")
+
 with tab4:
-    st.info("Step 4 coming next: Crop Health")
+    st.header("Crop Health Check")
+    st.write("Check one crop plot at a time. Do not eat unwashed raw crop from sick plot.")
+    c_type = st.selectbox("Crop Type / Nau'in Gona:", ["Maize / Masara", "Millet / Gero", "Sorghum / Dawa", "Groundnut / Gyada", "Rice / Shinkafa", "Vegetables / Kayan Lambu"])
+    c_photo = st.file_uploader("Upload Photo of Crop (Optional) - Crop", type=["jpg", "jpeg", "png"], key="crop_photo")
+    if c_photo is not None:
+        st.image(c_photo, caption="Crop photo uploaded", width=250)
+    if st.button("Get Crop Guidance"):
+        st.warning(f"For {c_type}: Check water, soil, and pests. Remove damaged leaves, do not spray near water pot or animal pen.")
+        st.warning("Guidance: Wash hands after farm work. Wash crop well before eating. Ask Extension Officer before using any chemical. Keep children and animals away from sprayed plot for 2 days.")
+        st.caption("For education only. Always see a certified Extension Officer / Agro Dealer.")
 with tab5:
     st.info("Step 5 coming next: Compound Audit")
 with tab6:
