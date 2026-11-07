@@ -301,7 +301,6 @@ with tab5:
         if not q6:
             st.info("Fix: Remove dung daily. Dung on soil spreads disease to children, animals and crops.")
         st.caption("For education only. This audit is a community signal, not a medical diagnosis.")
-with tab6:
     with tab6:
     st.header("Find Help Nearby - Giwa, Kaduna")
     st.write("Do not wait if it is urgent. Use the right help for the right problem.")
