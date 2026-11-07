@@ -173,6 +173,54 @@ else:
 location = f"{village}, {ward} Ward, {lga}, {state}, {country}"
 st.info(f"Active Location: {location} | Founder: Suleiman Ibrahim (Danzanfulani)")
 
+
+# STEP 3 - TAB 1: COMPOUND LOG & RISK SCORING - ADDED BY EDIT, STEP 1 AND 2 KEPT
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
+    T["tab_compound"],
+    T["tab_human"],
+    T["tab_animal"],
+    T["tab_crop"],
+    T["tab_survey"],
+    T["tab_help"]
+])
+
+with tab1:
+    st.header("Community OneHealth Compound Log")
+    st.write("In our compound, a hen, a goat and a child share the same room, water pot, and soil. If they get sick together, it is ONE root cause.")
+    human_n = st.number_input("Human sick cases in compound", 0, 50, 0)
+    animal_n = st.number_input("Animal sick cases in compound", 0, 50, 0)
+    crop_n = st.number_input("Crop plots damaged / wilting", 0, 50, 0)
+    root = st.selectbox("Identified Shared Root Cause / Tushen Matsalar:", [
+        "Same Water Source / Ruwan Sha Daya",
+        "Flies / Mosquito / Tick / Kuda da Sauro",
+        "Animal Dung on Compound Soil / Kashin Dabbobi",
+        "Dirty Shared Water Pot / Tukunyar Ruwa Mai Datti",
+        "Raw Crop Eaten Unwashed / Cin Abinci Ba Wankewa"
+    ])
+    if st.button("Save Report & Calculate Compound Risk", type="primary"):
+        risk = (human_n * 10) + (animal_n * 8) + (crop_n * 2)
+        level = "HIGH" if risk >= 50 else ("MEDIUM" if risk >= 20 else "LOW")
+        conn.execute("INSERT INTO reports VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+            (str(datetime.date.today()), location, human_n, animal_n, crop_n, root, risk, level))
+        conn.commit()
+        st.success(f"Risk Score: {risk:.1f} - Level: {level} - Saved to Local DB!")
+        if human_n > 0 and animal_n > 0 and crop_n > 0:
+            st.error("TRIPLE SIGNAL ALERT: Human + Animal + Crop sick simultaneously in one compound! Check Shared Water + Dung + Raw Crops immediately. Alert PHC and Vet together.")
+        elif risk >= 50:
+            st.error("HIGH COMPOUND RISK: Break the cycle today. Separate water sources and clean animal pens.")
+        st.caption("For education only. This score is a community signal, not a medical diagnosis. See Doctor / Vet.")
+    st.info("Step 3 Test: Tab 1 Compound Log is working. Try Human=2, Animal=2, Crop=1 and press Save.")
+
+with tab2:
+    st.info("Step 4 coming next: Human Health")
+with tab3:
+    st.info("Step 4 coming next: Animal Health")
+with tab4:
+    st.info("Step 4 coming next: Crop Health")
+with tab5:
+    st.info("Step 5 coming next: Compound Audit")
+with tab6:
+    st.info("Step 6 coming next: Find Help Nearby")
 st.info("Step 2 Test: Location is working. Check that Kaduna > Giwa > Wazata Ward > Danzanfulani Village shows correctly.")
 
 st.markdown("---")
