@@ -270,7 +270,37 @@ with tab4:
         st.warning("Guidance: Wash hands after farm work. Wash crop well before eating. Ask Extension Officer before using any chemical. Keep children and animals away from sprayed plot for 2 days.")
         st.caption("For education only. Always see a certified Extension Officer / Agro Dealer.")
 with tab5:
-    st.info("Step 5 coming next: Compound Audit")
+    st.header("Compound Audit - Check Your Compound")
+    st.write("Answer honestly. This audit shows where your compound is strong and where to fix today.")
+    q1 = st.checkbox("1. Clean drinking water is covered and separate from animals?")
+    q2 = st.checkbox("2. Animal pen is separate from sleeping room?")
+    q3 = st.checkbox("3. Family washes hands with soap after toilet / farm?")
+    q4 = st.checkbox("4. Compound has clean latrine / toilet?")
+    q5 = st.checkbox("5. Children sleep under mosquito net?")
+    q6 = st.checkbox("6. Animal dung is removed from compound daily?")
+    if st.button("Calculate Compound Audit Score", type="primary"):
+        score = sum([q1, q2, q3, q4, q5, q6])
+        percent = (score / 6) * 100
+        st.success(f"Audit Score: {score} / 6 = {percent:.0f}%")
+        if percent >= 80:
+            st.success("EXCELLENT COMPOUND: Keep doing this. Your compound is protecting Human, Animal and Crop together.")
+        elif percent >= 50:
+            st.warning("MEDIUM COMPOUND: Good start, but fix the missing items today. Start with clean water and dung removal.")
+        else:
+            st.error("NEEDS URGENT ACTION: Many risks in one compound. Start with 1. Clean water, 2. Separate animal pen, 3. Handwashing.")
+        if not q1:
+            st.info("Fix: Cover water pot. Do not let animals drink from same pot as people.")
+        if not q2:
+            st.info("Fix: Move animal pen away from sleeping room. Animals and children must not share same room at night.")
+        if not q3:
+            st.info("Fix: Wash hands with soap after toilet, after farm, before cooking.")
+        if not q4:
+            st.info("Fix: Use latrine always. Do not defecate in open compound / farm near water.")
+        if not q5:
+            st.info("Fix: Use mosquito net every night, especially for children under 5.")
+        if not q6:
+            st.info("Fix: Remove dung daily. Dung on soil spreads disease to children, animals and crops.")
+        st.caption("For education only. This audit is a community signal, not a medical diagnosis.")
 with tab6:
     st.info("Step 6 coming next: Find Help Nearby")
 st.info("Step 2 Test: Location is working. Check that Kaduna > Giwa > Wazata Ward > Danzanfulani Village shows correctly.")
