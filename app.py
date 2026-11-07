@@ -301,31 +301,7 @@ with tab5:
         if not q6:
             st.info("Fix: Remove dung daily. Dung on soil spreads disease to children, animals and crops.")
         st.caption("For education only. This audit is a community signal, not a medical diagnosis.")
-    with tab6:
-with tab6:
-    st.header("Find Help Nearby - Giwa, Kaduna")
-    st.write("Do not wait if it is urgent.")
-    help_type = st.selectbox("What Help Do You Need?", ["PHC - For People", "Vet - For Animals", "Extension - For Crops", "Emergency"])
-    if help_type == "PHC - For People":
-        st.success("GO TO: Wazata Ward PHC / Giwa General Hospital")
-        st.write("Take patient, age, symptom, when it started.")
-    elif help_type == "Vet - For Animals":
-        st.success("GO TO: Giwa LGA Vet Clinic / Ward Vet Officer")
-        st.write("Separate sick animal. Do not give human medicine.")
-    elif help_type == "Extension - For Crops":
-        st.success("GO TO: Giwa Agriculture Office / Extension Officer")
-        st.write("Take photo of crop. Ask before using chemical.")
-    else:
-        st.error("EMERGENCY: Go to Giwa General Hospital NOW.")
-        st.write("If person cannot breathe, is very weak, bleeding.")
-    st.divider()
-    st.write("1. Human -> PHC / Doctor")
-    st.write("2. Animal -> Vet")
-    st.write("3. Crop -> Extension Officer")
-    if st.button("I Have Found Help - Finish Check"):
-        st.balloons()
-        st.success("Alhamdulillah! You completed a full OneHealth check: Human + Animal + Crop + Compound + Help. Share EL-DANZA with one neighbour today.")
-st.info("Step 2 Test: Location is working. Check that Kaduna > Giwa > Wazata Ward > Danzanfulani Village shows correctly.")
-
+with tab6: st.header("Find Help Nearby - Giwa, Kaduna"); st.write("Do not wait if it is urgent."); help_type = st.selectbox("What Help Do You Need?", ["PHC - For People", "Vet - For Animals", "Extension - For Crops", "Emergency"]); help_map = {"PHC - For People": "GO TO: Wazata Ward PHC / Giwa General Hospital - Take patient, age, symptom, when it started.", "Vet - For Animals": "GO TO: Giwa LGA Vet Clinic / Ward Vet Officer - Separate sick animal. Do not give human medicine.", "Extension - For Crops": "GO TO: Giwa Agriculture Office / Extension Officer - Take photo of crop. Ask before using chemical.", "Emergency": "EMERGENCY: Go to Giwa General Hospital NOW - If person cannot breathe, is very weak, bleeding."}; st.success(help_map[help_type]); st.divider(); st.write("1. Human -> PHC / Doctor"); st.write("2. Animal -> Vet"); st.write("3. Crop -> Extension Officer")
+if st.button("I Have Found Help - Finish Check"): st.balloons(); st.success("Alhamdulillah! Full OneHealth check done.")
 st.markdown("---")
 st.caption("© 2026 EL-DANZA OneHealth AI | Built by Suleiman Ibrahim | Designed for Imagine Cup 2027 Startup Championship")
