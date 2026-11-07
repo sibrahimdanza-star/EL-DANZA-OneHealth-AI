@@ -302,31 +302,26 @@ with tab5:
             st.info("Fix: Remove dung daily. Dung on soil spreads disease to children, animals and crops.")
         st.caption("For education only. This audit is a community signal, not a medical diagnosis.")
     with tab6:
+with tab6:
     st.header("Find Help Nearby - Giwa, Kaduna")
-    st.write("Do not wait if it is urgent. Use the right help for the right problem.")
-    help_type = st.selectbox("What Help Do You Need? / Wane Taimako Kuke Bukata?", ["PHC / Health Centre - For People", "Vet - For Animals", "Extension Officer / Agro Dealer - For Crops", "Emergency / Gaggawa"])
-    if help_type == "PHC / Health Centre - For People":
-        st.success("GO TO: Wazata Ward PHC / Giwa General Hospital, Giwa LGA, Kaduna")
-        st.write("Take: Patient, age, symptom, when it started. For child under 5 with fever / diarrhoea / difficulty breathing, go immediately.")
-        st.info("What to say at PHC: 'Child / Person from Danzanfulani, Wazata Ward. Symptom is... It started... '")
+    st.write("Do not wait if it is urgent.")
+    help_type = st.selectbox("What Help Do You Need?", ["PHC - For People", "Vet - For Animals", "Extension - For Crops", "Emergency"])
+    if help_type == "PHC - For People":
+        st.success("GO TO: Wazata Ward PHC / Giwa General Hospital")
+        st.write("Take patient, age, symptom, when it started.")
     elif help_type == "Vet - For Animals":
-        st.success("GO TO: Giwa LGA Veterinary Clinic / Call your Ward Vet Officer")
-        st.write("Take: Sick animal separated, photo of symptom. Do not give human medicine to animal.")
-        st.info("What to say to Vet: 'Animal from Danzanfulani. Type is Goat / Sheep / Cow / Chicken. Symptom is... '")
-    elif help_type == "Extension Officer / Agro Dealer - For Crops":
-        st.success("GO TO: Giwa LGA Agriculture Office / Wazata Ward Extension Officer / Trusted Agro Dealer")
-        st.write("Take: Photo of crop, sample leaf in clean bag. Ask before using any chemical.")
-        st.info("What to say: 'Crop from Danzanfulani. Crop is Maize / Millet / Sorghum. Problem is... '")
+        st.success("GO TO: Giwa LGA Vet Clinic / Ward Vet Officer")
+        st.write("Separate sick animal. Do not give human medicine.")
+    elif help_type == "Extension - For Crops":
+        st.success("GO TO: Giwa Agriculture Office / Extension Officer")
+        st.write("Take photo of crop. Ask before using chemical.")
     else:
-        st.error("EMERGENCY: If person cannot breathe, is very weak, bleeding, or child is not responding - GO TO GIWA GENERAL HOSPITAL NOW. Do not wait for app.")
-        st.write("Carry: Clean water, patient wrapper, phone. Tell driver: Giwa General Hospital, Giwa, Kaduna.")
+        st.error("EMERGENCY: Go to Giwa General Hospital NOW.")
+        st.write("If person cannot breathe, is very weak, bleeding.")
     st.divider()
-    st.subheader("Quick Safety Reminder")
-    st.write("1. Human problem -> PHC / Doctor")
-    st.write("2. Animal problem -> Vet")
-    st.write("3. Crop problem -> Extension Officer")
-    st.write("4. Always wash hands after farm, after toilet, before cooking.")
-    st.caption("EL-DANZA is for education and community guidance only. Always see a certified Doctor / Vet / Extension Officer. Built by Suleiman Ibrahim, Danzanfulani, Wazata Ward, Giwa, Kaduna for Imagine Cup 2027.")
+    st.write("1. Human -> PHC / Doctor")
+    st.write("2. Animal -> Vet")
+    st.write("3. Crop -> Extension Officer")
     if st.button("I Have Found Help - Finish Check"):
         st.balloons()
         st.success("Alhamdulillah! You completed a full OneHealth check: Human + Animal + Crop + Compound + Help. Share EL-DANZA with one neighbour today.")
